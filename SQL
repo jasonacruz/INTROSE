@@ -1,0 +1,71 @@
+DROP DATABASE IF EXISTS try1;
+CREATE DATABASE IF NOT EXISTS try1;
+USE try1;
+CREATE TABLE EmpPosition(
+	pos_name varchar(30) NOT NULL,
+	PRIMARY KEY (pos_name)
+	);
+INSERT INTO EmpPosition(pos_name) VALUES ('Principal');
+INSERT INTO EmpPosition(pos_name) VALUES ('Coordinator');
+INSERT INTO EmpPosition(pos_name) VALUES ('Subject Teacher');
+
+CREATE TABLE Employee (
+	emp_id int(20) NOT NULL AUTO_INCREMENT,
+	emp_user varchar(40) NOT NULL,
+	emp_lastname varchar(20) NOT NULL,
+	emp_midname varchar(20) NOT NULL,
+	emp_firstname varchar(40) NOT NULL,
+	emp_pos varchar(30) NOT NULL,
+	emp_pass varchar(20) NOT NULL,
+	FOREIGN KEY (emp_pos) REFERENCES EmpPosition(pos_name),
+	PRIMARY KEY (emp_id),
+	UNIQUE KEY (emp_user),
+	CONSTRAINT emp_fullname UNIQUE KEY (emp_firstname, emp_midname, emp_lastname)
+	);
+
+CREATE TABLE Student (
+	st_id int(20) NOT NULL AUTO_INCREMENT,
+	st_lastname varchar(20) NOT NULL,
+	st_midname varchar(20) NOT NULL,
+	st_firstname varchar(40) NOT NULL,
+	PRIMARY KEY (st_id),
+	CONSTRAINT st_fullname UNIQUE KEY (st_firstname, st_midname, st_lastname)
+	);
+
+CREATE TABLE Sections (
+	sect_name varchar(20) NOT NULL,
+	sect_yrlvl int(40) NOT NULL,
+	PRIMARY KEY (sect_name, sect_yrlvl)
+	);
+
+CREATE TABLE Class ( 
+	class_section varchar(20) NOT NULL,
+	class_yrlvl int(40) NOT NULL,
+	class_schlyear int(20) NOT NULL,
+	class_prof int(20) NOT NULL,
+	class_student int(20) NOT NULL,
+	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id),
+	FOREIGN KEY (class_student) REFERENCES Student(st_id),
+	UNIQUE INDEX(class_prof, class_student)
+	);
+
+
+CREATE TABLE Department (
+	dept_name varchar(30) NOT NULL,
+	PRIMARY KEY (dept_name)
+	);
+	INSERT INTO Department(dept_name) VALUES ('High School');
+	INSERT INTO Department(dept_name) VALUES('Elementary');
+
+CREATE TABLE DepartmentEmp (
+	dept_name varchar(30) NOT NULL,
+	dept_empID int(20) NOT NULL,
+	FOREIGN KEY (dept_name) REFERENCES Department (dept_name),
+	FOREIGN KEY (dept_empID) REFERENCES Employee(emp_id)
+	);
+
+ #if username does not exist
+	INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user) VALUES('jason fred', 'Blabla', 'Cruz', 'Coordinator', 'isawisaw', LOWER(CONCAT(SUBSTRING_INDEX(emp_firstname, ' ', 1), '_', emp_lastname)));
+ #if username does exist
+	INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user) VALUES('jason anthony', 'Afundar', 'Cruz', 'Subject Teacher', 'isawisaw', LOWER(CONCAT(REPLACE(emp_firstname, ' ', '_'), '_', emp_lastname)));
+#add coordinator to a department
