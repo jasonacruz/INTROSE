@@ -1,0 +1,47 @@
+
+public class Department{
+
+	private String dept_name;
+	private int dept_empID;
+	private date dept_hired;
+	
+	public setDepartmentName(String dept_name)
+	{
+		this.dept_name = dept_name;
+	}
+	public setDepartmentCoord(String dept_name, int dept_coordID, boolean dept_hired)
+	{
+		this.dept_name = dept_name;
+		this.dept_coordID = dept_coordID;
+		this.dept_hired = dept_hired;
+	}
+	
+	public setDepartmentEmp(String dept_name, int dept_coordID, int dept_empID)
+	{
+		this.dept_name = dept_name;
+		this.dept_coordID = dept_coordID;
+		this.dept_empID = dept_empID;
+	}
+	
+	public String getDeptname
+	{
+		return dept_name;
+	}
+	
+	public int getDeptempID()
+	{
+		return dept_empID;
+	}
+	
+	public int getDeptcoordID()
+	{
+		return dept_coordID;
+	}
+	
+	public boolean getHired()
+	{
+		return dept_hired;
+	}
+}
+
+	
