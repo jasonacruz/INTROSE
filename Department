@@ -4,23 +4,31 @@ public class Department{
 	private String dept_name;
 	private int dept_empID;
 	private date dept_hired;
-	
+	private date dept_hiredto;
 	public setDepartmentName(String dept_name)
 	{
 		this.dept_name = dept_name;
 	}
-	public setDepartmentCoord(String dept_name, int dept_coordID, boolean dept_hired)
+	public setDepartmentEmp(String dept_name, int dept_empID, date dept_hired)
 	{
 		this.dept_name = dept_name;
-		this.dept_coordID = dept_coordID;
+		this.dept_empID = dept_empID;
+		this.dept_hired = dept_hired;
+	}
+
+	public setEmployee(int dept_empID)
+	{
+		this.dept_empID = dept_empID;
+	}
+	
+	public setEmpHired(date dept_hired)
+	{
 		this.dept_hired = dept_hired;
 	}
 	
-	public setDepartmentEmp(String dept_name, int dept_coordID, int dept_empID)
+	public setEmpHiredto(date dept_hiredto)
 	{
-		this.dept_name = dept_name;
-		this.dept_coordID = dept_coordID;
-		this.dept_empID = dept_empID;
+		this.dept_hiredto = dept_hiredto;
 	}
 	
 	public String getDeptname
@@ -28,19 +36,19 @@ public class Department{
 		return dept_name;
 	}
 	
-	public int getDeptempID()
+	public int getEmpID()
 	{
 		return dept_empID;
 	}
 	
-	public int getDeptcoordID()
-	{
-		return dept_coordID;
-	}
-	
-	public boolean getHired()
+	public date getHired()
 	{
 		return dept_hired;
+	}
+	
+	public date getHiredto()
+	{
+		return dept_hiredto;
 	}
 }
 
