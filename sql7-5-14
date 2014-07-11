@@ -2,17 +2,39 @@ DROP DATABASE IF EXISTS try1;
 CREATE DATABASE IF NOT EXISTS try1;
 USE try1;
 
+CREATE TABLE Department (
+	dept_name varchar(30) NOT NULL,
+	PRIMARY KEY (dept_name)
+	);
+
 CREATE TABLE EmpPosition(
 	pos_name varchar(30) NOT NULL,
 	PRIMARY KEY (pos_name)
 	);
-INSERT INTO EmpPosition(pos_name) VALUES ('Principal');
-INSERT INTO EmpPosition(pos_name) VALUES ('Coordinator');
-INSERT INTO EmpPosition(pos_name) VALUES ('Subject Teacher');
-INSERT INTO EmpPosition(pos_name) VALUES ('Administrator');
+
+CREATE TABLE yearQuarter(
+	schoolquarter int(1) NOT NULL,
+	schoolYear year(4) NOT NULL,
+	PRIMARY KEY (schoolquarter),
+	UNIQUE KEY(schoolYear, SchoolQuarter)
+	);
+
+CREATE TABLE Course(
+	course_name varchar(20) NOT NULL,
+	course_description varchar(100),
+	PRIMARY KEY (course_name)
+	);
+
+CREATE TABLE Section (
+	sect_name varchar(20) NOT NULL,
+	sect_yrlvl int(2) NOT NULL,
+	sect_dept varchar(30) NOT NULL,
+	FOREIGN KEY (sect_dept) REFERENCES DEPARTMENT(dept_name),
+	PRIMARY KEY (sect_name, sect_yrlvl)
+	);
 
 CREATE TABLE Employee (
-	emp_id int(20) NOT NULL AUTO_INCREMENT,
+	emp_id int(20) NOT NULL,
 	emp_user varchar(40) NOT NULL,
 	emp_lastname varchar(20) NOT NULL,
 	emp_midname varchar(20) NOT NULL,
@@ -25,17 +47,9 @@ CREATE TABLE Employee (
 	UNIQUE KEY (emp_user),
 	CONSTRAINT emp_fullname UNIQUE KEY (emp_firstname, emp_midname, emp_lastname)
 	);
-	INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user, emp_changedpass) VALUES('','','','Administrator', 'admin1234', 'admin', TRUE);
-#if username does not exist
-	INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user, emp_changedpass) VALUES('jason fred', 'Blabla', 'Cruz', 'Principal', 'isawisaw', LOWER(CONCAT(SUBSTRING_INDEX(emp_firstname, ' ', 1), '_', emp_lastname)), TRUE);
-	INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user, emp_changedpass) VALUES('jason blabla', 'Blabla', 'Cruz', 'Subject Teacher', 'isawisaw', LOWER(CONCAT(REPLACE(emp_firstname, ' ', '_'), '_', emp_lastname)), TRUE);
-	#INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user) VALUES('jason bla', 'Blabla', 'Cruz', 'Subject Teacher', 'isawisaw', LOWER(CONCAT(REPLACE(emp_firstname, ' ', '_'), '_', emp_lastname)));
-	#INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user) VALUES('jason blablabla', 'Blabla', 'Cruz', 'Subject Teacher', 'isawisaw', LOWER(CONCAT(REPLACE(emp_firstname, ' ', '_'), '_', emp_lastname)));
- #if username does exist
-	#INSERT INTO EMPLOYEE(emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user) VALUES('jason anthony', 'Afundar', 'Cruz', 'Subject Teacher', 'isawisaw', LOWER(CONCAT(REPLACE(emp_firstname, ' ', '_'), '_', emp_lastname)));
 
 CREATE TABLE Student (
-	st_id int(20) NOT NULL AUTO_INCREMENT,
+	st_id int(20) NOT NULL,
 	st_lastname varchar(20) NOT NULL,
 	st_midname varchar(20) NOT NULL,
 	st_firstname varchar(40) NOT NULL,
@@ -45,69 +59,70 @@ CREATE TABLE Student (
 	PRIMARY KEY (st_id),
 	CONSTRAINT st_fullname UNIQUE KEY (st_firstname, st_midname, st_lastname)
 	);
-# create student
-	INSERT INTO STUDENT(st_firstname, st_midname, st_lastname, st_gender, st_birthdate, st_enrolled) VALUES ('Anton Jaie', 'Harina?', 'De Joya', 'M', '1996-07-31',true);
-	INSERT INTO STUDENT(st_firstname, st_midname, st_lastname, st_gender, st_birthdate, st_enrolled) VALUES ('Andrew', 'Harina?', 'De Joya', 'M', '1996-07-31',true);
-
-CREATE TABLE Section (
-	sect_name varchar(20) NOT NULL,
-	sect_yrlvl int(2) NOT NULL,
-	PRIMARY KEY (sect_name, sect_yrlvl)
-	);
-#Insert section (grade 1 - 12)
-	INSERT INTO Section(sect_name, sect_yrlvl) VALUES ('Bethlehem', 7);
-	INSERT INTO Section(sect_name, sect_yrlvl) VALUES ('Jerusalem', 12);
 
 CREATE TABLE Class ( 
 	class_name varchar(20) NOT NULL,
-	class_yrlvl int(20) NOT NULL,
 	class_schlyear year(4) NOT NULL,
 	class_prof int(20) NOT NULL,
 	class_student int(20) NOT NULL, 
-	FOREIGN KEY (class_name, class_yrlvl) REFERENCES Section(sect_name, sect_yrlvl),
+	FOREIGN KEY (class_name) REFERENCES Section(sect_name),
 	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id),
 	FOREIGN KEY (class_student) REFERENCES Student(st_id),
 	UNIQUE KEY (class_schlyear, class_student),
-	UNIQUE KEY (class_name, class_yrlvl, class_schlyear, class_prof, class_student)
+	UNIQUE KEY (class_name, class_schlyear, class_prof, class_student)
 	);
 #make class
-
-CREATE TABLE Course(
-	course_name varchar(20) NOT NULL,
-	course_description varchar(100),
-	PRIMARY KEY (course_name)
-	);
  
 CREATE TABLE ClassTeacher(
 	course_name varchar(20) NOT NULL,
 	class_name varchar(20) NOT NULL,
-	class_yrlvl int(2) NOT NULL,
 	class_schlyear year(4) NOT NULL,
 	class_prof int(20) NOT NULL,
-	FOREIGN KEY (class_name, class_yrlvl) REFERENCES Section(sect_name, sect_yrlvl),
+	FOREIGN KEY (class_name) REFERENCES Section(sect_name),
 	FOREIGN KEY (course_name) REFERENCES Course(course_name),
-	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id)
+	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id),
+	UNIQUE KEY(class_schlyear, course_name, class_name),
+	UNIQUE KEY(class_schlyear, course_name, class_name, class_prof)
 	);
 
-CREATE TABLE Grade(
+CREATE TABLE GradeType(
+	grade_type varchar(20) NOT NULL,
+	PRIMARY KEY (grade_type)
+	);
+
+CREATE TABLE GradeComp(
+	course_name varchar(20) NOT NULL,
+	grade_type varchar(20) NOT NULL,
+	grade_number int(2) NOT NULL,
+	student_id int(20) NOT NULL,
+	student_grade int(3) NOT NULL,
+	class_prof int(20) NOT NULL,
+	schoolquarter int(1) NOT NULL,
+	schoolYear year(4) NOT NULL,
+	FOREIGN KEY (schoolquarter) REFERENCES yearQuarter(schoolquarter),
+	FOREIGN KEY (schoolYear) REFERENCES yearQuarter(schoolYear),
+	FOREIGN KEY (course_name) REFERENCES COURSE(course_name),
+	FOREIGN KEY (student_id) REFERENCES STUDENT(st_id),
+	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id),
+	UNIQUE KEY (course_name, grade_type, grade_number, student_id, student_grade, class_prof, schoolquarter, schoolyear)
+	);
+
+CREATE TABLE finalGrade(
 	course_name varchar(20) NOT NULL,
 	student_id int(20) NOT NULL,
 	student_grade int(3) NOT NULL,
-	class_quarter int(1) NOT NULL,
 	class_prof int(20) NOT NULL,
+	grade_final boolean NOT NULL,
+	schoolquarter int(1) NOT NULL,
+	schoolYear year(4) NOT NULL,
+	FOREIGN KEY (schoolquarter) REFERENCES yearQuarter(schoolquarter),
+	FOREIGN KEY (schoolYear) REFERENCES yearQuarter(schoolYear),
 	FOREIGN KEY (course_name) REFERENCES COURSE(course_name),
 	FOREIGN KEY (student_id) REFERENCES STUDENT(st_id),
 	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id)
 	);
 
-CREATE TABLE Department (
-	dept_name varchar(30) NOT NULL,
-	PRIMARY KEY (dept_name)
-	);
-	INSERT INTO Department(dept_name) VALUES ('High School');
-	INSERT INTO Department(dept_name) VALUES('Elementary');
-	INSERT INTO Department(dept_name) VALUES('School');
-
+	
 CREATE TABLE DepartmentEmp (
 	dept_name varchar(30) NOT NULL,
 	dept_empID int(20) NOT NULL,
@@ -115,8 +130,5 @@ CREATE TABLE DepartmentEmp (
 	dept_hiredto date NOT NULL,
 	FOREIGN KEY (dept_name) REFERENCES Department (dept_name),
 	FOREIGN KEY (dept_empID) REFERENCES Employee(emp_id),
-	UNIQUE INDEX(dept_name, dept_empID)
+	UNIQUE KEY (dept_name, dept_empID, dept_hiredate, dept_hiredto)
 	);
-
-	INSERT INTO DepartmentEmp(dept_name, dept_empID, dept_hiredate, dept_hiredto) VALUES('Elementary', 2, CURRENT_DATE, '9999-12-31');
-#add coordinator to a department
