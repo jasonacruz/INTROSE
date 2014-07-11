@@ -17,6 +17,7 @@ CREATE TABLE Employee (
 	emp_firstname varchar(40) NOT NULL,
 	emp_pos varchar(30) NOT NULL,
 	emp_pass varchar(20) NOT NULL,
+	emp_changedpass boolean NOT NULL,
 	FOREIGN KEY (emp_pos) REFERENCES EmpPosition(pos_name),
 	PRIMARY KEY (emp_id),
 	UNIQUE KEY (emp_user),
@@ -46,58 +47,54 @@ CREATE TABLE Student (
 	INSERT INTO STUDENT(st_firstname, st_midname, st_lastname, st_gender, st_birthdate) VALUES ('Andrew', 'Harina?', 'De Joya', 'M', '1996-07-31');
 
 CREATE TABLE Section (
-	sect_num int(20) NOT NULL AUTO_INCREMENT,
 	sect_name varchar(20) NOT NULL,
 	sect_yrlvl int(2) NOT NULL,
-	PRIMARY KEY (sect_num),
-	UNIQUE KEY (sect_name)
+	PRIMARY KEY (sect_name, sect_yrlvl)
 	);
 #Insert section (grade 1 - 12)
 	INSERT INTO Section(sect_name, sect_yrlvl) VALUES ('Bethlehem', 7);
 	INSERT INTO Section(sect_name, sect_yrlvl) VALUES ('Jerusalem', 12);
 
 CREATE TABLE Class ( 
-	class_num int(20) NOT NULL,
+	class_name varchar(20) NOT NULL,
+	class_yrlvl int(20) NOT NULL,
 	class_schlyear year(4) NOT NULL,
 	class_prof int(20) NOT NULL,
 	class_student int(20) NOT NULL, 
-	FOREIGN KEY (class_num) REFERENCES Section(sect_num),
+	FOREIGN KEY (class_name, class_yrlvl) REFERENCES Section(sect_name, sect_yrlvl),
 	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id),
 	FOREIGN KEY (class_student) REFERENCES Student(st_id),
 	UNIQUE KEY (class_schlyear, class_student),
-	UNIQUE KEY (class_num, class_schlyear, class_prof, class_student)
+	UNIQUE KEY (class_name, class_yrlvl, class_schlyear, class_prof, class_student)
 	);
 #make class
-	INSERT INTO CLASS(class_num, class_schlyear, class_prof, class_student) VALUES (1, 2012, 1, 1);
-	INSERT INTO CLASS(class_num, class_schlyear, class_prof, class_student) VALUES (1, 2012, 1, 2);
-	INSERT INTO CLASS(class_num, class_schlyear, class_prof, class_student) VALUES (1, 2013, 1, 1);
-	INSERT INTO CLASS(class_num, class_schlyear, class_prof, class_student) VALUES (2, 2013, 2, 2);
 
 CREATE TABLE Course(
-	course_num int(20) NOT NULL AUTO_INCREMENT,
 	course_name varchar(20) NOT NULL,
-	course_yearlvl int(2) NOT NULL,
-	PRIMARY KEY (course_num),
-	UNIQUE KEY (course_name, course_yearlvl)
+	course_description varchar(100),
+	PRIMARY KEY (course_name)
 	);
  
-CREATE TABLE ClassTeachers(
-	course_num int(20) NOT NULL,
-	class_num int(20) NOT NULL,
+CREATE TABLE ClassTeacher(
+	course_name varchar(20) NOT NULL,
+	class_name varchar(20) NOT NULL,
+	class_yrlvl int(2) NOT NULL,
 	class_schlyear year(4) NOT NULL,
 	class_prof int(20) NOT NULL,
-	FOREIGN KEY (course_num) REFERENCES Course(course_num),
-	FOREIGN KEY (class_num) REFERENCES Section(sect_num),
+	FOREIGN KEY (class_name, class_yrlvl) REFERENCES Section(sect_name, sect_yrlvl),
+	FOREIGN KEY (course_name) REFERENCES Course(course_name),
 	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id)
 	);
-#CREATE TABLE YearQuarterGrade(
-#	quarter_part int(2) NOT NULL,
-#	quarter_class int(20) NOT NULL,
-#	quarter_schlyear year(4) NOT NULL,
-#	st_id int(20) NOT NULL,
-#	FOREIGN KEY (st_id) REFERENCES Student(st_id)
-#	);
-	
+
+CREATE TABLE Grade(
+	course_name varchar(20) NOT NULL,
+	student_id int(20) NOT NULL,
+	student_grade int(3) NOT NULL,
+	class_quarter int(1) NOT NULL,
+	class_prof int(20) NOT NULL,
+	FOREIGN KEY (course_name) REFERENCES COURSE(course_name),
+	FOREIGN KEY (student_id) REFERENCES STUDENT(st_id),
+	FOREIGN KEY (class_prof) REFERENCES 
 	
 CREATE TABLE Department (
 	dept_name varchar(30) NOT NULL,
@@ -105,28 +102,15 @@ CREATE TABLE Department (
 	);
 	INSERT INTO Department(dept_name) VALUES ('High School');
 	INSERT INTO Department(dept_name) VALUES('Elementary');
+	INSERT INTO Department(dept_name) VALUES('School');
 
-CREATE TABLE DepartmentCoord (
-	dept_name varchar(30) NOT NULL,
-	dept_empID int(20) NOT NULL,
-	dept_hired boolean NOT NULL,
-	FOREIGN KEY (dept_name) REFERENCES Department (dept_name),
-	FOREIGN KEY (dept_empID) REFERENCES Employee(emp_id),
-	UNIQUE KEY(dept_name, dept_hired)
-	);
-
-#add coordinator
-	INSERT INTO DepartmentCoord(dept_name, dept_empID, dept_hired) VALUES ('High School', 1, false);
-	INSERT INTO DepartmentCoord(dept_name, dept_empID, dept_hired) VALUES ('Elementary', 2, true);
-	INSERT INTO DepartmentCoord(dept_name, dept_empID, dept_hired) VALUES ('High School', 1, true);
 CREATE TABLE DepartmentEmp (
 	dept_name varchar(30) NOT NULL,
-	dept_coordID int(20) NOT NULL,
 	dept_empID int(20) NOT NULL,
-	FOREIGN KEY (dept_coordID) REFERENCES DepartmentCoord (dept_empID),
+	dept_hiredate date NOT NULL,
 	FOREIGN KEY (dept_name) REFERENCES Department (dept_name),
 	FOREIGN KEY (dept_empID) REFERENCES Employee(emp_id),
-	UNIQUE INDEX(dept_empID, dept_coordID)
+	UNIQUE INDEX(dept_name, dept_empID)
 	);
 
 
