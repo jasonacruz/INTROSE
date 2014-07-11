@@ -1,0 +1,39 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+import java.lang.Exception;
+
+public class EmployeeDao{
+	Connection connection = null;
+	PreparedStatement stmt = null;
+	ResultSet rs = null;
+	private Connection getConnection() throws SQLException {
+		Connection conn;
+		conn = ConnectionFactory.getInstance().getConnection();
+		return conn;
+	}
+	
+	public boolean addEmployees(Employee emp)
+	{
+	try
+		{
+			String queryString = "INSERT INTO EMPLOYEE(emp_id, emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user, emp_changedpass) VALUES (?,?,?,?,? , ? , LOWER(CONCAT(SUBSTRING_INDEX(emp_firstname, ' ', 1), '_', emp_lastname)), false)";
+			connection = getConnection();
+			stmt = connection.prepareStatement(queryString);
+			stmt.setNull(1, java.sql.Types.INTEGER);
+			stmt.setString(2, emp.getFirstname());
+			stmt.setString(3, emp.getMidname());
+			stmt.setString(4, emp.getLastname());
+			stmt.setString(5, emp.getPosition());
+			stmt.setString(6, "isawisaw");
+			stmt.executeUpdate();
+			}catch (SQLException e) {
+			 System.out.println(e.getMessage());
+			return false;
+	}
+		return true;
+			}
+			
+}
