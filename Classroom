@@ -1,0 +1,61 @@
+
+public class Classroom{
+
+	private String class_sect;
+	private int class_yrlvl;
+	private int class_schlyear;
+	private int class_prof;
+	private int class_student;
+	
+	
+	public void setSection(String class_sect)
+	{
+		this.class_sect = class_sect;
+	}
+	
+	public void setClasslvl(int class_yrlvl)
+	{
+		this.class_yrlvl = class_yrlvl;
+	}
+	
+	public void setSchoolyear(int class_schlyear)
+	{
+		this.class_schlyear = class_schlyear;
+	}
+	
+	public void setSubjteach(int class_prof)
+	{
+		this.class_prof = class_prof;
+	}
+	
+	public void setStudent(int class_student)
+	{
+		this.class_student = class_student;
+	}
+	
+	public String getClasssect()
+	{
+		return class_sect;
+	}
+	
+	public int getClasslvl()
+	{
+		return class_yrlvl;
+	}
+	
+	public int getClassyear()
+	{
+		return class_schlyear;
+	}
+	
+	public int getClassprof()
+	{
+		return class_prof;
+	}
+	
+	public int getClassStudent()
+	{
+	
+		return class_student;
+	}
+	}
