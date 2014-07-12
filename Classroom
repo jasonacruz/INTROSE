@@ -1,16 +1,28 @@
 
 public class Classroom{
 
-	private String class_sect;
-	private int class_yrlvl;
-	private int class_schlyear;
-	private int class_prof;
-	private int class_student;
+	private String class_sect; //use in addClassStudent
+	private String course_name;// use in addsubjectTeach
+	private String department; 
+	private int class_yrlvl; // use in both
+	private int class_schlyear; // use in both
+	private int class_prof; //adviser for addClassStudent and subjectTeacher for addSubjectTeach
+	private int class_student; //use in addClassStudent
 	
 	
 	public void setSection(String class_sect)
 	{
 		this.class_sect = class_sect;
+	}
+	
+	public void setDepartment(String department)
+	{
+		this.department = department;
+	}
+	
+	public void setCoursename(String course_name)
+	{
+		this.course_name = course_name;
 	}
 	
 	public void setClasslvl(int class_yrlvl)
@@ -23,11 +35,20 @@ public class Classroom{
 		this.class_schlyear = class_schlyear;
 	}
 	
-	public void setSubjteach(int class_prof)
+	public void setAdviser(int class_prof)
 	{
 		this.class_prof = class_prof;
 	}
 	
+	public void setSubjectTeacher(int class_prof)
+	{
+		this.class_prof = class_prof;
+	}
+	
+	public String getCoursename()
+	{
+		return course_name;
+	}
 	public void setStudent(int class_student)
 	{
 		this.class_student = class_student;
@@ -36,6 +57,11 @@ public class Classroom{
 	public String getClasssect()
 	{
 		return class_sect;
+	}
+	
+	public String getDepartment()
+	{
+		return department;
 	}
 	
 	public int getClasslvl()
@@ -48,11 +74,15 @@ public class Classroom{
 		return class_schlyear;
 	}
 	
-	public int getClassprof()
+	public int getClassAdviser()
 	{
 		return class_prof;
 	}
 	
+	public int getSubjectTeacher()
+	{
+		return class_prof;
+	}
 	public int getClassStudent()
 	{
 	
