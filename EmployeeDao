@@ -22,7 +22,7 @@ public class EmployeeDao{
 			String queryString = "INSERT INTO EMPLOYEE(emp_id, emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user, emp_changedpass) VALUES (?,?,?,?,? , ? , LOWER(CONCAT(SUBSTRING_INDEX(emp_firstname, ' ', 1), '_', emp_lastname)), false)";
 			connection = getConnection();
 			stmt = connection.prepareStatement(queryString);
-			stmt.setNull(1, java.sql.Types.INTEGER);
+			stmt.setNull(1, emp.getID());
 			stmt.setString(2, emp.getFirstname());
 			stmt.setString(3, emp.getMidname());
 			stmt.setString(4, emp.getLastname());
