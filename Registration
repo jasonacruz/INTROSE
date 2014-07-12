@@ -1,0 +1,89 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class Registration extends JFrame implements ActionListener{
+    private JPanel RegistrationPanel;
+    private JLabel Username;
+    private JLabel Password;
+    private JTextField UN;
+    private JPasswordField PW;
+    private JTextField last;
+    private JTextField first;
+    private JTextField middle;
+    private JLabel lastn;
+    private JLabel firstn;
+    private JLabel middlen;
+    private JButton submit;
+    private JLabel pos;
+    private JLabel dept;
+    private JComboBox positions;
+    private JComboBox depts;
+    private String[] p = {"Coordinator", "Subject Teacher"};
+    private String[] d = {"Elementary" , "High School"};
+    private RegistrationDAO r;
+    private JTextField id;
+    private JLabel i;
+    public Registration(){
+        super("Register");
+        r = new RegistrationDAO();
+        RegistrationPanel = new JPanel();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Username = new JLabel("Username");
+        Password = new JLabel("Password");
+        i = new JLabel("ID number");
+        UN = new JTextField(15);
+        id = new JTextField(10);
+        PW = new JPasswordField(15);
+        last = new JTextField(15);
+        first = new JTextField(15);
+        middle = new JTextField(15);
+        lastn = new JLabel("Last Name");
+        firstn = new JLabel("First Name");
+        middlen = new JLabel("Middle Name");
+        positions = new JComboBox(p);
+        depts = new JComboBox(d);
+        submit = new JButton("Submit");
+        
+        add(RegistrationPanel);
+        
+        RegistrationPanel.add(i);
+        RegistrationPanel.add(id);
+        RegistrationPanel.add(Username);
+        RegistrationPanel.add(UN);
+        RegistrationPanel.add(Password);
+        RegistrationPanel.add(PW);
+        RegistrationPanel.add(lastn);
+        RegistrationPanel.add(last);
+        RegistrationPanel.add(firstn);
+        RegistrationPanel.add(first);
+        RegistrationPanel.add(middlen);
+        RegistrationPanel.add(middle);
+        RegistrationPanel.add(positions);
+        RegistrationPanel.add(depts);
+        RegistrationPanel.add(submit);
+        submit.addActionListener(this);
+        pack();
+        setVisible(true);
+        
+    }
+    
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == submit){
+            Employee em = new Employee();
+            em.setID( Integer.parseInt(id.getText()));
+            em.setFirstname(first.getText());
+            em.setMidname(middle.getText());
+            em.setLastname(last.getText());
+            em.setPass(PW.getText());
+            em.setUsername(UN.getText());
+            em.setPosition(positions.getSelectedItem().toString());
+            em.setDept(depts.getSelectedItem().toString());
+            r.RegisterEmployee(em);
+            System.out.println("yo");
+        } 
+    }
+    
+    public static void main(String[] args){
+        new Registration();
+    }
+}
