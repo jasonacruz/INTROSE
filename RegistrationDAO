@@ -1,0 +1,58 @@
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Jan
+ */
+public class RegistrationDAO {
+    Connection connection = null;
+	PreparedStatement stmt = null;
+	ResultSet rs = null;
+	private Connection getConnection() throws SQLException {
+		Connection conn;
+		conn = ConnectionFactory.getInstance().getConnection();
+		return conn;
+	}
+	
+	public boolean RegisterEmployee(Employee em)
+	{
+            try {
+		//String queryString = "UPDATE 'employee' SET 'emp_user' = "+em.getUsername()+", 'emp_pass' = "+em.getPass()+" where 'emp_id' = """ ;
+                System.out.println("a");
+                String queryString = "UPDATE 'employee' SET 'emp_user' = "+em.getUsername()+" where 'emp_id' = '"+em.getID()+"' " ;
+                System.out.println("aa");
+                //'emp_pass' = '"+em.getPass()+"'
+		connection = getConnection();
+                System.out.println("aaa");
+		stmt = connection.prepareStatement(queryString);
+                System.out.println("aaaa");
+		/*stmt.setNull(1, java.sql.Types.INTEGER);
+		stmt.setString(2, em.getUsername());
+		stmt.setString(3, em.getLastname());
+		stmt.setString(4, em.getMidname());
+		stmt.setString(5, em.getFirstname());
+		stmt.setString(6, em.getPosition());
+		stmt.setString(7, em.getPass());
+		stmt.setBoolean(8, true);*/
+                System.out.println(em.getPass() + em.getUsername() +em.getID());
+		stmt.executeUpdate();
+                System.out.println("aaaaaaaaa");
+                System.out.println("Done");
+            }
+            catch (SQLException e) {
+                System.out.println("Not Done");
+		return false;
+            }
+            
+            return true;
+	}
+}
