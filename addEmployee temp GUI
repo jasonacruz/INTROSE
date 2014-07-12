@@ -16,14 +16,18 @@ public class addEmployee extends JFrame implements ActionListener{
     private JLabel lName;
     private JLabel mName;
     private JLabel fName;
+    private JLabel id;
     private JTextField fNameBox;
     private JTextField mNameBox;
     private JTextField lNameBox;
+    private JTextField i;
     private JButton submit;
     private JLabel pos;
     private JLabel dept;
     private JComboBox positions;
     private JComboBox depts;
+    private JPasswordField pw;
+    private JLabel pass;
     private String[] p;
     private String[] d;
     Employee emp;
@@ -44,7 +48,8 @@ public class addEmployee extends JFrame implements ActionListener{
         positions = new JComboBox(p);
         depts = new JComboBox(d);
         submit = new JButton("Confirm");
-        
+        id = new JLabel("ID number");
+        i = new JTextField(10);
         add(aEmployeePanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         aEmployeePanel.add(lName);
@@ -55,7 +60,10 @@ public class addEmployee extends JFrame implements ActionListener{
         aEmployeePanel.add(mNameBox);
         aEmployeePanel.add(positions);
         aEmployeePanel.add(depts);
+        aEmployeePanel.add(id);
+        aEmployeePanel.add(i);
         aEmployeePanel.add(submit);
+        
         submit.addActionListener(this);
         pack();
         setVisible(true);
@@ -63,17 +71,20 @@ public class addEmployee extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == submit){
-		   emp = new Employee();
-		   emp.setLastname(lNameBox.getText());
-		   emp.setMidname(mNameBox.getText());
-		   emp.setFirstname(fNameBox.getText());
-		   emp.setPosition(positions.getSelectedItem().toString());
-           System.out.println(emp.getFirstname());
-		   System.out.println(emp.getMidname());
-		   System.out.println(emp.getLastname());
-		   System.out.println(emp.getPosition());
-		   ed.addEmployees(emp);
-		   System.out.println("okay");
+            emp = new Employee();
+            emp.setLastname(lNameBox.getText());
+            emp.setMidname(mNameBox.getText());
+            emp.setFirstname(fNameBox.getText());
+            emp.setPosition(positions.getSelectedItem().toString());
+            emp.setID(Integer.parseInt(i.getText()));
+            System.out.println(emp.getFirstname());
+            System.out.println(emp.getMidname());
+            System.out.println(emp.getLastname());
+            System.out.println(emp.getPosition());
+            
+            System.out.println("lolers");
+            ed.addEmployees(emp);
+            System.out.println("successfully added");
         }
     }
     
