@@ -10,5 +10,83 @@ public Grade{
 	private int schoolquarter;
 	private int schoolyear;
 	
+	    //Constructor//
+        public Grade(String grade_type, int grade_number, String course_name, int st_id, int class_prof, int st_grade, int schoolquarter, int schoolyear) {
+        this.grade_type = grade_type;
+        this.grade_number = grade_number;
+        this.course_name = course_name;
+        this.st_id = st_id;
+        this.class_prof = class_prof;
+        this.st_grade = st_grade;
+        this.schoolquarter = schoolquarter;
+        this.schoolyear = schoolyear;
+    	  }
+
+	    //Getter//
+    	public int getClass_prof() {
+          return class_prof;
+    	  }
+
+    	public String getCourse_name() {
+          return course_name;
+    	  }
+
+    	public int getGrade_number() {
+          return grade_number;
+	  }
+
+	public String getGrade_type() {
+          return grade_type;
+    	  }
+
+    	public int getSchoolquarter() {
+          return schoolquarter;
+    	  }
+
+    	public int getSchoolyear() {
+          return schoolyear;
+    	  }
+
+    	public int getSt_grade() {
+          return st_grade;
+    	  }
+
+    	public int getSt_id() {
+          return st_id;
+    	  }
+
+    	    //Setter//
+    	public void setClass_prof(int class_prof) {
+          this.class_prof = class_prof;
+    	  }
+
+    	public void setCourse_name(String course_name) {
+          this.course_name = course_name;
+    	  }
+
+    	public void setGrade_number(int grade_number) {
+          this.grade_number = grade_number;
+    	  }
+
+    	public void setGrade_type(String grade_type) {
+          this.grade_type = grade_type;
+    	  }
+
+	public void setSchoolquarter(int schoolquarter) {
+          this.schoolquarter = schoolquarter;
+    	  }
+
+    	public void setSchoolyear(int schoolyear) {
+          this.schoolyear = schoolyear;
+    	  }
+
+    	public void setSt_grade(int st_grade) {
+          this.st_grade = st_grade;
+    	  }
+
+    	public void setSt_id(int st_id) {
+          this.st_id = st_id;
+    	  }
+	
 	
 	}
