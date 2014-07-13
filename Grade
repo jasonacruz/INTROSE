@@ -1,14 +1,14 @@
 
 public Grade{
 	
-	private String grade_type;
-	private int grade_number;
-	private String course_name;
-	private int st_id;
-	private int class_prof;
-	private int st_grade;
-	private int schoolquarter;
-	private int schoolyear;
+	private String grade_type; //use in addGradetype for gradetype in db and addGradeComp for quiz or sws
+	private int grade_number; //use in addGradeComp for each quiz or sws
+	private String course_name; //use in addGradeComp(GradeComp in db) and addFinalGrade(FinalGrade in DB)
+	private int st_id; // use in both finalgrade and gradecomp
+	private int class_prof; //  use in both finalgrade and gradecomp
+	private int st_grade; //use in both finalgrade and gradecomp
+	private int schoolquarter; //use in both finalgrade and gradecomp
+	private int schoolyear; //use in both finalgrade and gradecomp
 	
 	    //Constructor//
         public Grade(String grade_type, int grade_number, String course_name, int st_id, int class_prof, int st_grade, int schoolquarter, int schoolyear) {
