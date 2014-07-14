@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class RegistrationDAO {
     Connection connection = null;
-	PreparedStatement stmt = null;
+	Statement stmt = null;
 	ResultSet rs = null;
 	private Connection getConnection() throws SQLException {
 		Connection conn;
@@ -26,14 +26,13 @@ public class RegistrationDAO {
 	public boolean RegisterEmployee(Employee em)
 	{
             try {
-                String queryString = "UPDATE 'employee' SET 'emp_user' = "+em.getUsername()+" , 'emp_pass' = "+em.getPass()" , 'emp_changedpass' = true where 'emp_id' = '"+em.getID()+"' " ;
-               
-		connection = getConnection();
-                System.out.println("aaa");
-		stmt = connection.prepareStatement(queryString);
+                connection = getConnection();
+                stmt = connection.createStatement();
+		rs = stmt.executeQuery(" select * from employee where 'emp_id' = '"+em.getID()+"' ");
+		rs.updateString( "emp_user", em.getUsername() );
+		rs.updateString( "emp_pass", em.getPass() );
                 System.out.println(em.getPass() + em.getUsername() +em.getID());
-		stmt.executeUpdate();
-                System.out.println("aaaaaaaaa");
+		rs.updateRow();
                 System.out.println("Done");
             }
             catch (SQLException e) {
