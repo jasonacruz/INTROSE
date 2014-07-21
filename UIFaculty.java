@@ -94,13 +94,9 @@ public class UIFaculty extends javax.swing.JFrame {
      }
      public void changeTable()
      {
-          ArrayList<Student> studentList;
+         ArrayList<Student> studentList;
          studentList = new ArrayList<Student>();
          studentList = getStudent();
-
-
-       
-         
         Object[] tableColumnNames = new Object[3];
         tableColumnNames[0] = "Student ID";
         tableColumnNames[1] = "Student Name";
@@ -117,7 +113,6 @@ public class UIFaculty extends javax.swing.JFrame {
             }
             this.sNameGrade.setModel(tab);
         }
-         
         }
 
 
@@ -1129,7 +1124,10 @@ public class UIFaculty extends javax.swing.JFrame {
     }                                          
 
     private void GSSubjActionPerformed(java.awt.event.ActionEvent evt) {                                       
-            changeTable();
+        DefaultTableModel tb = (DefaultTableModel) sNameGrade.getModel();
+        tb.setRowCount(0);
+        sNameGrade.setModel(tb);
+        changeTable();
     }                                      
 
     private void bLogoutActionPerformed(java.awt.event.ActionEvent evt) {                                        
