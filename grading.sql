@@ -28,9 +28,8 @@ CREATE TABLE Course(
 CREATE TABLE Section (
 	sect_name varchar(20) NOT NULL,
 	sect_yrlvl int(2) NOT NULL,
-	sect_dept varchar(30) NOT NULL,
-	FOREIGN KEY (sect_dept) REFERENCES DEPARTMENT(dept_name),
-	PRIMARY KEY (sect_name, sect_yrlvl)
+	PRIMARY KEY (sect_name, sect_yrlvl),
+	UNIQUE KEY (sect_name)
 	);
 
 CREATE TABLE Employee (
@@ -39,8 +38,10 @@ CREATE TABLE Employee (
 	emp_lastname varchar(20) NOT NULL,
 	emp_midname varchar(20) NOT NULL,
 	emp_firstname varchar(40) NOT NULL,
-	emp_pos varchar(30) NOT NULL,
-	emp_pass varchar(20) NOT NULL,
+	emp_pos varchar(30),
+	emp_pass varchar(20),
+	emp_phone varchar(13),
+	emp_address varchar(100),
 	emp_changedpass boolean NOT NULL,
 	FOREIGN KEY (emp_pos) REFERENCES EmpPosition(pos_name),
 	PRIMARY KEY (emp_id),
@@ -54,22 +55,35 @@ CREATE TABLE Student (
 	st_midname varchar(20) NOT NULL,
 	st_firstname varchar(40) NOT NULL,
 	st_gender varchar(1) NOT NULL,
-	st_birthdate date NOT NULL,
+	st_gradelevel int(2),
+	st_age int(2) NOT NULL,
+	st_phone varchar(13),
+	st_address varchar(100),
 	st_enrolled boolean NOT NULL,
 	PRIMARY KEY (st_id),
 	CONSTRAINT st_fullname UNIQUE KEY (st_firstname, st_midname, st_lastname)
 	);
 
-CREATE TABLE Class ( 
+CREATE TABLE ClassAdviser(
 	class_name varchar(20) NOT NULL,
 	class_schlyear year(4) NOT NULL,
 	class_prof int(20) NOT NULL,
-	class_student int(20) NOT NULL, 
 	FOREIGN KEY (class_name) REFERENCES Section(sect_name),
 	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id),
+	PRIMARY KEY (class_name, class_schlyear),
+	UNIQUE KEY (class_schlyear, class_name, class_prof),
+	UNIQUE KEY (class_schlyear, class_prof),
+	UNIQUE KEY(class_name, class_schlyear)
+	);
+CREATE TABLE ClassStudent ( 
+	class_name varchar(20) NOT NULL,
+	class_schlyear year(4) NOT NULL,
+	class_student int(20) NOT NULL, 
+	FOREIGN KEY (class_name) REFERENCES ClassAdviser(class_name),
+	FOREIGN KEY (class_schlyear) REFERENCES ClassAdviser(class_schlyear),
 	FOREIGN KEY (class_student) REFERENCES Student(st_id),
 	UNIQUE KEY (class_schlyear, class_student),
-	UNIQUE KEY (class_name, class_schlyear, class_prof, class_student)
+	UNIQUE KEY (class_name, class_schlyear,  class_student)
 	);
 #make class
  
@@ -85,10 +99,6 @@ CREATE TABLE ClassTeacher(
 	UNIQUE KEY(class_schlyear, course_name, class_name, class_prof)
 	);
 
-CREATE TABLE GradeType(
-	grade_type varchar(20) NOT NULL,
-	PRIMARY KEY (grade_type)
-	);
 
 CREATE TABLE GradeComp(
 	course_name varchar(20) NOT NULL,
@@ -99,12 +109,11 @@ CREATE TABLE GradeComp(
 	class_prof int(20) NOT NULL,
 	schoolquarter int(1) NOT NULL,
 	schoolYear year(4) NOT NULL,
-	FOREIGN KEY (schoolquarter) REFERENCES yearQuarter(schoolquarter),
-	FOREIGN KEY (schoolYear) REFERENCES yearQuarter(schoolYear),
-	FOREIGN KEY (course_name) REFERENCES COURSE(course_name),
-	FOREIGN KEY (student_id) REFERENCES STUDENT(st_id),
-	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id),
-	UNIQUE KEY (course_name, grade_type, grade_number, student_id, student_grade, class_prof, schoolquarter, schoolyear)
+	FOREIGN KEY (schoolYear) REFERENCES classteacher(class_schlyear),
+	FOREIGN KEY (course_name) REFERENCES classteacher(course_name),
+	FOREIGN KEY (student_id) REFERENCES classStudent(class_student),
+	FOREIGN KEY (class_prof) REFERENCES classteacher(class_prof),
+	UNIQUE KEY (course_name, grade_type, grade_number, student_id,class_prof, schoolquarter, schoolyear)
 	);
 
 CREATE TABLE finalGrade(
@@ -115,10 +124,10 @@ CREATE TABLE finalGrade(
 	grade_final boolean NOT NULL,
 	schoolquarter int(1) NOT NULL,
 	schoolYear year(4) NOT NULL,
-	FOREIGN KEY (schoolquarter) REFERENCES yearQuarter(schoolquarter),
-	FOREIGN KEY (schoolYear) REFERENCES yearQuarter(schoolYear),
-	FOREIGN KEY (course_name) REFERENCES COURSE(course_name),
-	FOREIGN KEY (student_id) REFERENCES STUDENT(st_id),
+	FOREIGN KEY (schoolYear) REFERENCES classteacher(class_schlyear),
+	FOREIGN KEY (course_name) REFERENCES classteacher(course_name),
+	FOREIGN KEY (student_id) REFERENCES classStudent(class_student),
+	FOREIGN KEY (class_prof) REFERENCES classteacher(class_prof),
 	FOREIGN KEY (class_prof) REFERENCES Employee(emp_id)
 	);
 
@@ -132,3 +141,14 @@ CREATE TABLE DepartmentEmp (
 	FOREIGN KEY (dept_empID) REFERENCES Employee(emp_id),
 	UNIQUE KEY (dept_name, dept_empID, dept_hiredate, dept_hiredto)
 	);
+
+INSERT INTO EmpPosition(pos_name) VALUES ('Principal');
+INSERT INTO EmpPosition(pos_name) VALUES ('Coordinator');
+INSERT INTO EmpPosition(pos_name) VALUES ('Subject Teacher');
+INSERT INTO EmpPosition(pos_name) VALUES ('Administrator');
+
+INSERT INTO EMPLOYEE(emp_id,emp_firstname, emp_midname, emp_lastname, emp_pos, emp_pass, emp_user, emp_changedpass) VALUES(1,'Admin','Admin','Admin','Administrator', 'admin1234', 'admin', TRUE);
+
+INSERT INTO Department(dept_name) VALUES ('High School');
+INSERT INTO Department(dept_name) VALUES('Elementary'); 
+INSERT INTO Department(dept_name) VALUES('School');
