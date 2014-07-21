@@ -1090,7 +1090,7 @@ public class UIFaculty extends javax.swing.JFrame {
     }                                     
 
     private void bViewFGPS3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        if (sNameGrade.isEditing())
+        try{if (sNameGrade.isEditing())
               sNameGrade.getCellEditor().stopCellEditing();
         if(eh.sCheckCodes(jTextField1.getText(), 2) && !jTextField1.getText().isEmpty() && !eh.sLength(jTextField1.getText(), 1, 10))
                 {
@@ -1121,6 +1121,11 @@ public class UIFaculty extends javax.swing.JFrame {
                 }
       else
             JOptionPane.showMessageDialog(rootPane, "Invalid component number.");
+        }catch(Exception E)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Please select a student.");
+        }
+            
     }                                          
 
     private void GSSubjActionPerformed(java.awt.event.ActionEvent evt) {                                       
