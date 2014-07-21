@@ -1,91 +1,72 @@
 
 public class Classroom{
 
-	private String class_sect; //use in addClassStudent
-	private String course_name;// use in addsubjectTeach
-	private String department; 
-	private int class_yrlvl; // use in both
+        
 	private int class_schlyear; // use in both
-	private int class_prof; //adviser for addClassStudent and subjectTeacher for addSubjectTeach
-	private int class_student; //use in addClassStudent
-	
-	
-	public void setSection(String class_sect)
-	{
-		this.class_sect = class_sect;
-	}
-	
-	public void setDepartment(String department)
-	{
-		this.department = department;
-	}
-	
-	public void setCoursename(String course_name)
-	{
-		this.course_name = course_name;
-	}
-	
-	public void setClasslvl(int class_yrlvl)
-	{
-		this.class_yrlvl = class_yrlvl;
-	}
-	
+	private Section s;
+        private Student st;
+        private Employee emp;
+        private Course c;
+        
+	public Classroom(Section s, Employee emp)
+        {
+            this.s = s;
+            this.emp=emp;
+        }
+        public Classroom(Section s, Student st)
+        {
+            this.s = s;
+            this.st = st;
+        }
+        public Classroom(Section s, Student st, Employee emp)
+        {
+            this.s = s;
+            this.st =st;
+            this.emp=emp;
+        }
+        public Classroom(Section s, Employee emp, Course c)
+        {
+            this.s = s;
+            this.emp=emp;
+            this.c = c;
+        }
+        
+        public Classroom(Section s, Student st, Employee emp, Course c)
+        {
+            this.s = s;
+            this.st =st;
+            this.emp=emp;
+            this.c = c;
+        }
 	public void setSchoolyear(int class_schlyear)
 	{
 		this.class_schlyear = class_schlyear;
 	}
 	
-	public void setAdviser(int class_prof)
-	{
-		this.class_prof = class_prof;
-	}
 	
-	public void setSubjectTeacher(int class_prof)
-	{
-		this.class_prof = class_prof;
-	}
 	
-	public String getCoursename()
-	{
-		return course_name;
-	}
-	public void setStudent(int class_student)
-	{
-		this.class_student = class_student;
-	}
-	
-	public String getClasssect()
-	{
-		return class_sect;
-	}
-	
-	public String getDepartment()
-	{
-		return department;
-	}
-	
-	public int getClasslvl()
-	{
-		return class_yrlvl;
-	}
-	
+        public Section getSection()
+        {
+              return s;
+        }
+        
+        public Student getStudent()
+        {
+            return st;
+        }
+        
+        public Course getCourse()
+        {
+            return c;
+        }
+        
+        public Employee getEmp()
+        {
+            return emp;
+        }
 	public int getClassyear()
 	{
 		return class_schlyear;
 	}
 	
-	public int getClassAdviser()
-	{
-		return class_prof;
-	}
-	
-	public int getSubjectTeacher()
-	{
-		return class_prof;
-	}
-	public int getClassStudent()
-	{
-	
-		return class_student;
-	}
 	}
