@@ -35,7 +35,7 @@ public class DepartmentDAO{
 				connection = getConnection();
 				stmt = connection.prepareStatement(queryString);
 				stmt.setString(1, d.getDeptname());
-				stmt.setInt(2, d.getEmpID();	
+				stmt.setInt(2, d.getEmpID());	
 				stmt.executeUpdate();
 			}catch (SQLException e) {
 			return false;
