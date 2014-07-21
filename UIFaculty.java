@@ -1033,7 +1033,7 @@ public class UIFaculty extends javax.swing.JFrame {
                  txtSAge.setText("");
             }
             else
-                JOptionPane.showMessageDialog(rootPane, "Student may already be in a class or student does not exist.");
+                JOptionPane.showMessageDialog(rootPane, "Student may already be in a class, may not exists, or may have an incorrect ID#.");
         }
          else
                JOptionPane.showMessageDialog(rootPane, "One/Some of the fields is/are invalid!" );
