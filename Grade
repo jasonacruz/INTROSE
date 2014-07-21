@@ -1,92 +1,70 @@
 
-public Grade{
+public class Grade{
 	
-	private String grade_type; //use in addGradetype for gradetype in db and addGradeComp for quiz or sws
-	private int grade_number; //use in addGradeComp for each quiz or sws
-	private String course_name; //use in addGradeComp(GradeComp in db) and addFinalGrade(FinalGrade in DB)
-	private int st_id; // use in both finalgrade and gradecomp
-	private int class_prof; //  use in both finalgrade and gradecomp
-	private int st_grade; //use in both finalgrade and gradecomp
-	private int schoolquarter; //use in both finalgrade and gradecomp
-	private int schoolyear; //use in both finalgrade and gradecomp
-	
-	    //Constructor//
-        public Grade(String grade_type, int grade_number, String course_name, int st_id, int class_prof, int st_grade, int schoolquarter, int schoolyear) {
-        this.grade_type = grade_type;
-        this.grade_number = grade_number;
-        this.course_name = course_name;
-        this.st_id = st_id;
-        this.class_prof = class_prof;
-        this.st_grade = st_grade;
-        this.schoolquarter = schoolquarter;
-        this.schoolyear = schoolyear;
-    	  }
+	private String grade_type;
+	private int grade_number;
+	private int st_grade;
+	private int schoolquarter;
+        private int schoolyear;
+		//Constructor//
 
-	    //Getter//
-    	public int getClass_prof() {
-          return class_prof;
-    	  }
+        private Classroom c;
+        
+      
+        
+        public Classroom getRoom()
+        {
+            return c;
+        }
+        
+        public void setRoom(Classroom c)
+        {
+            this.c = c;
+        }
+        public Grade(){}
 
-    	public String getCourse_name() {
-          return course_name;
-    	  }
-
-    	public int getGrade_number() {
+//Getter//
+     public int getGrade_number() {
           return grade_number;
-	  }
+}
 
-	public String getGrade_type() {
+public String getGrade_type() {
           return grade_type;
-    	  }
+     }
 
-    	public int getSchoolquarter() {
+     public int getSchoolquarter() {
           return schoolquarter;
-    	  }
+     }
 
-    	public int getSchoolyear() {
-          return schoolyear;
-    	  }
-
-    	public int getSt_grade() {
+     public int getSt_grade() {
           return st_grade;
-    	  }
+     }
 
-    	public int getSt_id() {
-          return st_id;
-    	  }
+     public int getSchoolyear()
+     {
+         return schoolyear;
+     }
 
-    	    //Setter//
-    	public void setClass_prof(int class_prof) {
-          this.class_prof = class_prof;
-    	  }
+     //Setter//
 
-    	public void setCourse_name(String course_name) {
-          this.course_name = course_name;
-    	  }
-
-    	public void setGrade_number(int grade_number) {
+     public void setGrade_number(int grade_number) {
           this.grade_number = grade_number;
-    	  }
+     }
 
-    	public void setGrade_type(String grade_type) {
+     public void setGrade_type(String grade_type) {
           this.grade_type = grade_type;
-    	  }
+     }
 
-	public void setSchoolquarter(int schoolquarter) {
+    public void setSchoolquarter(int schoolquarter) {
           this.schoolquarter = schoolquarter;
-    	  }
+     }
 
-    	public void setSchoolyear(int schoolyear) {
-          this.schoolyear = schoolyear;
-    	  }
-
-    	public void setSt_grade(int st_grade) {
+     public void setSt_grade(int st_grade) {
           this.st_grade = st_grade;
-    	  }
-
-    	public void setSt_id(int st_id) {
-          this.st_id = st_id;
-    	  }
-	
-	
+     }
+     public void setSchoolyear(int schoolyear)
+     {
+         this.schoolyear = schoolyear;
+     }
+     
 	}
