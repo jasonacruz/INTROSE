@@ -44,7 +44,9 @@ public class StudentDAO{
 				stmt.setInt(2, s.getId());
                                 }catch(SQLException ex)
                                 {}
+                                
                             }
+                            return false;
 	}
 	return true;
 	}
