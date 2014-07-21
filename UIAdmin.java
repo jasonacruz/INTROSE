@@ -88,31 +88,6 @@ public class UIAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lUsername = new javax.swing.JLabel();
         mainPane = new javax.swing.JTabbedPane();
-        tabAccount = new javax.swing.JTabbedPane();
-        jPanel13 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        quizOption = new javax.swing.JSpinner();
-        jLabel6 = new javax.swing.JLabel();
-        reciteOption = new javax.swing.JSpinner();
-        projectOption = new javax.swing.JSpinner();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        PTOption = new javax.swing.JSpinner();
-        bUpdateGP = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        SWOption = new javax.swing.JSpinner();
-        jPanel16 = new javax.swing.JPanel();
-        PTOptionCQ = new javax.swing.JSpinner();
-        jLabel10 = new javax.swing.JLabel();
-        quizOptionCQ = new javax.swing.JSpinner();
-        jLabel11 = new javax.swing.JLabel();
-        ProjOptionCQ = new javax.swing.JSpinner();
-        jLabel9 = new javax.swing.JLabel();
-        bUpdateCQ = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        SWOptionCQ = new javax.swing.JSpinner();
         tabGrades = new javax.swing.JTabbedPane();
         viewFinalGradesperSection = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -201,6 +176,31 @@ public class UIAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        tabAccount = new javax.swing.JTabbedPane();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        quizOption = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        reciteOption = new javax.swing.JSpinner();
+        projectOption = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        PTOption = new javax.swing.JSpinner();
+        bUpdateGP = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        SWOption = new javax.swing.JSpinner();
+        jPanel16 = new javax.swing.JPanel();
+        PTOptionCQ = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        quizOptionCQ = new javax.swing.JSpinner();
+        jLabel11 = new javax.swing.JLabel();
+        ProjOptionCQ = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
+        bUpdateCQ = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        SWOptionCQ = new javax.swing.JSpinner();
         bLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -217,79 +217,6 @@ public class UIAdmin extends javax.swing.JFrame {
         getContentPane().add(lUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 100, 20));
 
         mainPane.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-
-        tabAccount.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-
-        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Grades percentage"));
-        jPanel15.setToolTipText("Grades Percentage");
-        jPanel15.setName("Grades"); // NOI18N
-        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setText("Quiz");
-        jPanel15.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 71, -1));
-        jPanel15.add(quizOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 90, -1));
-
-        jLabel6.setText("Recitation");
-        jPanel15.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 30, 71, -1));
-        jPanel15.add(reciteOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 90, -1));
-        jPanel15.add(projectOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 90, -1));
-
-        jLabel7.setText("Projects");
-        jPanel15.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 71, -1));
-
-        jLabel8.setText("Periodical Test");
-        jPanel15.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 61, 71, -1));
-        jPanel15.add(PTOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 90, -1));
-
-        bUpdateGP.setText("Update Settings");
-        jPanel15.add(bUpdateGP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
-
-        jLabel12.setText("Seatwork");
-        jPanel15.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 71, -1));
-        jPanel15.add(SWOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 90, -1));
-
-        jPanel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 11, 500, 120));
-
-        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Component quantity"));
-        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel16.add(PTOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 90, -1));
-
-        jLabel10.setText("Projects");
-        jPanel16.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 71, -1));
-        jPanel16.add(quizOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 90, -1));
-
-        jLabel11.setText("Periodical Test");
-        jPanel16.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 71, -1));
-        jPanel16.add(ProjOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 90, -1));
-
-        jLabel9.setText("Quiz");
-        jPanel16.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 71, -1));
-
-        bUpdateCQ.setText("Update Settings");
-        jPanel16.add(bUpdateCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
-
-        jLabel13.setText("Seatwork");
-        jPanel16.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 71, -1));
-        jPanel16.add(SWOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 90, -1));
-
-        jPanel14.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 500, 110));
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
-        );
-
-        tabAccount.addTab("Settings", jPanel13);
-
-        mainPane.addTab("Account ", tabAccount);
 
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1053,6 +980,79 @@ public class UIAdmin extends javax.swing.JFrame {
 
         mainPane.addTab("Person Records", tabPerson);
 
+        tabAccount.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Grades percentage"));
+        jPanel15.setToolTipText("Grades Percentage");
+        jPanel15.setName("Grades"); // NOI18N
+        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setText("Quiz");
+        jPanel15.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 71, -1));
+        jPanel15.add(quizOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 90, -1));
+
+        jLabel6.setText("Recitation");
+        jPanel15.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 30, 71, -1));
+        jPanel15.add(reciteOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 90, -1));
+        jPanel15.add(projectOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 90, -1));
+
+        jLabel7.setText("Projects");
+        jPanel15.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 71, -1));
+
+        jLabel8.setText("Periodical Test");
+        jPanel15.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 61, 71, -1));
+        jPanel15.add(PTOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 90, -1));
+
+        bUpdateGP.setText("Update Settings");
+        jPanel15.add(bUpdateGP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+
+        jLabel12.setText("Seatwork");
+        jPanel15.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 71, -1));
+        jPanel15.add(SWOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 90, -1));
+
+        jPanel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 11, 500, 120));
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Component quantity"));
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel16.add(PTOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 90, -1));
+
+        jLabel10.setText("Projects");
+        jPanel16.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 71, -1));
+        jPanel16.add(quizOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 90, -1));
+
+        jLabel11.setText("Periodical Test");
+        jPanel16.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 71, -1));
+        jPanel16.add(ProjOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 90, -1));
+
+        jLabel9.setText("Quiz");
+        jPanel16.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 71, -1));
+
+        bUpdateCQ.setText("Update Settings");
+        jPanel16.add(bUpdateCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
+
+        jLabel13.setText("Seatwork");
+        jPanel16.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 71, -1));
+        jPanel16.add(SWOptionCQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 90, -1));
+
+        jPanel14.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 500, 110));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+        );
+
+        tabAccount.addTab("Settings", jPanel13);
+
+        mainPane.addTab("Account ", tabAccount);
+
         getContentPane().add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 670, 430));
 
         bLogout.setText("Logout");
@@ -1228,7 +1228,7 @@ public class UIAdmin extends javax.swing.JFrame {
     }                                         
 
     private void bSRegisterActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        if (eh.sCheckNames(txtSFirstName.getText()) && eh.sCheckNames(txtSLastName.getText()) && eh.sCheckNames( txtSMiddleName.getText()) && (eh.sCheckCodes(txtSID.getText(), 2) && !eh.sLength(txtSID.getText(), 6, 8))  && eh.sCheckCodes(txtSPhone.getText(), 2) && Integer.parseInt(txtSAge.getText()) > 0 && eh.sCheckCodes(txtSAge.getText(), 2))
+        if (eh.sCheckNames(txtSFirstName.getText()) && eh.sCheckNames(txtSLastName.getText()) && eh.sCheckNames( txtSMiddleName.getText()) && (eh.sCheckCodes(txtSID.getText(), 2) && !eh.sLength(txtSID.getText(), 6, 8))  && eh.sCheckCodes(txtSPhone.getText(), 2) && eh.sCheckCodes(txtSAge.getText(), 2) && Integer.parseInt(txtSAge.getText()) > 0 )
         {
             st = new Student();
             st.setID(Integer.parseInt(txtSID.getText()));
